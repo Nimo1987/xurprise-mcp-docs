@@ -116,6 +116,16 @@ curl -X POST https://xurprise.ai/api/mcp \
 
 ## Tools
 
+> **Note on response shape.** MCP tools/call returns an object with
+> two fields: `content[]` (text blocks containing JSON) and
+> `structuredContent` (the typed result). Per the MCP spec,
+> `structuredContent` must be a record (object), not an array —
+> so tools that logically return a list wrap it in a record with
+> a `results` / `regions` / `categories` key. All MCP-compatible
+> clients (Claude Desktop, Cursor, Cline, Continue, Goose, etc.)
+> auto-handle this; you only see it if you're decoding the raw
+> JSON-RPC response yourself.
+
 ### `search_brands`
 
 Free-text search over the catalogue. Results are rank-scored on the
@@ -127,7 +137,7 @@ search_brands({
   region?: string,         // optional — full country name or "International"
   category?: string,       // optional — "Fashion", "Electronics", etc.
   limit?: number,          // optional — default 10, max 50
-}) => Array<Brand>
+}) => { results: Brand[], count: number, query: string }
 ```
 
 ### `get_brand`
@@ -144,7 +154,7 @@ All shipping regions represented in the catalogue (use before
 recommending to confirm user's country is covered).
 
 ```ts
-list_regions() => string[]
+list_regions() => { regions: string[], count: number }
 ```
 
 ### `list_categories`
@@ -152,7 +162,7 @@ list_regions() => string[]
 All categories represented in the catalogue.
 
 ```ts
-list_categories() => string[]
+list_categories() => { categories: string[], count: number }
 ```
 
 ### `get_click_url`
