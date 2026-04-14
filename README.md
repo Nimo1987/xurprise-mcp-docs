@@ -5,6 +5,8 @@
 
 [![Languages](https://img.shields.io/badge/search-EN%20%7C%20%E4%B8%AD%E6%96%87%20%7C%20MS%20%7C%20ID%20%7C%20VI%20%7C%20TH%20%7C%20%E6%97%A5%E6%9C%AC%E8%AA%9E%20%7C%20%ED%95%9C%EA%B5%AD%EC%96%B4-blue)](#multilingual-search)
 
+![xurprise MCP demo — same intent in Chinese and Thai, one MCP lookup](./assets/demo.gif)
+
 The **xurprise MCP server** lets any MCP-compatible agent
 (Claude, Cursor, Cline, Continue, Goose, etc.) discover merchant
 brands and get attribution-tracked click-through URLs across a curated
