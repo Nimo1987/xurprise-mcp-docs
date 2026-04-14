@@ -1,7 +1,9 @@
 # xurprise MCP
 
 > **Agent-native product discovery across region-matched merchants.**
-> One HTTPS endpoint. Five tools. Zero setup.
+> One HTTPS endpoint. Five tools. Zero setup. Multilingual.
+
+[![Languages](https://img.shields.io/badge/search-EN%20%7C%20%E4%B8%AD%E6%96%87%20%7C%20MS%20%7C%20ID%20%7C%20VI%20%7C%20TH%20%7C%20%E6%97%A5%E6%9C%AC%E8%AA%9E%20%7C%20%ED%95%9C%EA%B5%AD%EC%96%B4-blue)](#multilingual-search)
 
 The **xurprise MCP server** lets any MCP-compatible agent
 (Claude, Cursor, Cline, Continue, Goose, etc.) discover merchant
@@ -126,10 +128,44 @@ curl -X POST https://xurprise.ai/api/mcp \
 > auto-handle this; you only see it if you're decoding the raw
 > JSON-RPC response yourself.
 
+### Multilingual search
+
+The `search_brands` tool is indexed across **9 language variants** so
+agents serving SEA users don't have to translate queries to English:
+
+- English, Simplified + Traditional Chinese
+- Malay, Indonesian, Vietnamese, Thai
+- Japanese, Korean
+
+Verified: 20 test queries in 8 languages, all resolve the same consumer
+intent to the same brand. A few examples:
+
+| query | language | top-1 match |
+|---|---|---|
+| `beauty Singapore` | EN | sephora-sg |
+| `新加坡 美妆` | ZH | sephora-sg |
+| `kecantikan Singapura` | MS | sephora-sg |
+| `mỹ phẩm Singapore` | VI | sephora-sg |
+| `เครื่องสำอาง สิงคโปร์` | TH | sephora-sg |
+| `シンガポール 化粧品` | JA | sephora-sg |
+| `싱가포르 화장품` | KO | sephora-sg |
+| `小米 手机` | ZH | xiaomi-sg |
+| `샤오미` | KO | xiaomi-sg |
+| `机票` / `航空券` / `항공권` | ZH/JA/KO | airpaz-global |
+| `希音` | ZH | shein-global |
+
+The per-brand keyword index covers brand aliases (transliterated names
+like `小米` / `샤오미` / `シャオミ` for Xiaomi), category synonyms
+(Fashion / 时尚 / fesyen / thời trang / แฟชั่น / ファッション / 패션),
+and region aliases (Singapore / 新加坡 / 싱가포르 / สิงคโปร์ / Singapura).
+CJK and Thai queries are tokenized with 2-char n-grams since those
+scripts have no whitespace word boundaries.
+
 ### `search_brands`
 
 Free-text search over the catalogue. Results are rank-scored on the
-query against brand name, headline, and categories.
+query against brand name, headline, category, and the multilingual
+keyword index above.
 
 ```ts
 search_brands({
