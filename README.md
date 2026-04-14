@@ -266,10 +266,10 @@ URL within these, even deep paths):
 | FusionHome AI | `fusionhome.ai` |
 | The Trade Wizard | `tradewizard.cloud` |
 
-Taobao is deliberately excluded — IA's Taobao deeplinks are
-whitelist-locked or brand-only, so we can't guarantee product-level
-attribution will work. For Taobao, use `get_click_url` with the
-brand-level slug instead.
+Taobao is deliberately excluded from product-level wrapping — the
+upstream routing for Taobao is whitelist-locked or brand-only, so
+product-level attribution isn't reliable there. For Taobao, use
+`get_click_url` with the brand-level slug instead.
 
 ---
 
@@ -313,11 +313,11 @@ For the live list, call `list_categories` + `search_brands` or visit
 ## FAQ
 
 **Is the catalogue curated or crawled?**
-Curated. Every brand is reviewed through Involve Asia's advertiser
-approval flow and given a hand-authored headline. We do not scrape.
+Curated. Every brand goes through a partner-approval flow and is
+given a hand-authored headline. We do not scrape.
 
 **How fresh is the data?**
-Regenerated from upstream affiliate-network data on each deploy.
+Regenerated from our internal catalogue on each deploy.
 See `page_url` on each brand and the [sitemap lastmod](https://xurprise.ai/sitemap.xml).
 
 **Do you track my users?**
@@ -329,13 +329,14 @@ on the merchant storefront (that's Shopee/Shein/etc.'s own page).
 
 **What happens after a click?**
 A 302 redirect chain takes the user to the canonical merchant
-storefront via Involve Asia's attribution layer. Any `aff_sub` you
-pass through `get_click_url` is preserved.
+storefront with attribution preserved end-to-end. Any `aff_sub` you
+pass through `get_click_url` is carried through the chain.
 
 **Can I add my brand?**
-Not yet — we onboard through affiliate network approvals. If you run
-an Involve Asia advertiser and want to discuss inclusion,
-email <xwow.dev@gmail.com>.
+Merchant onboarding is by introduction today. Email
+<xwow.dev@gmail.com> if you run a brand in our covered regions
+(Southeast Asia + China + global-shipping) and want to discuss
+inclusion.
 
 **Who operates this?**
 XWOW Pte. Ltd. (Singapore). Contact: Jiaqi Ge,
