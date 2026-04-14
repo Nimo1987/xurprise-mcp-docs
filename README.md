@@ -221,6 +221,56 @@ get_click_url({
 }) => { click_url: string, slug: string, name: string }
 ```
 
+### `wrap_product_url`
+
+**Product-level attribution.** Use when the user wants a specific item
+(a particular Sony headphone, a specific Shein dress, etc.) rather
+than the brand's homepage. You supply any URL on a supported
+merchant's site — xurprise wraps it into a click-through URL that
+lands the user on that exact product while preserving attribution
+tracking.
+
+The agent is expected to discover the merchant URL itself (via its
+own web search, training knowledge, or MCP tool composition). xurprise
+is the attribution layer, not the catalogue — this lets you leverage
+whatever product-discovery capabilities your client already has.
+
+```ts
+wrap_product_url({
+  merchant_url: string,    // required — full https URL on a supported merchant
+                           // e.g. "https://shopee.sg/Sony-WH-1000XM5-i.12345.67890"
+  product_name?: string,   // optional — surfaces in attribution logs
+  aff_sub?: string,        // optional — e.g. your chat session id
+}) => {
+  click_url: string,       // https://xurprise.ai/go/p?u=...  (302s to the product)
+  merchant_url: string,    // canonicalized input
+  merchant_hostname: string,
+  slug: string,            // which brand the domain maps to
+  brand: string,
+  name: string,
+}
+```
+
+**Supported merchant domains** (product-level attribution works on any
+URL within these, even deep paths):
+
+| Brand | Accepted hostname (incl. subdomains) |
+|---|---|
+| Shopee SG | `shopee.sg` |
+| Xiaomi SG | `mi.com` |
+| Sephora SG | `sephora.sg` |
+| JD Sports SG | `jdsports.com.sg` |
+| Shein | `shein.com` (any regional subdomain) |
+| Airpaz | `airpaz.com` |
+| WPS Office | `wps.com` |
+| FusionHome AI | `fusionhome.ai` |
+| The Trade Wizard | `tradewizard.cloud` |
+
+Taobao is deliberately excluded — IA's Taobao deeplinks are
+whitelist-locked or brand-only, so we can't guarantee product-level
+attribution will work. For Taobao, use `get_click_url` with the
+brand-level slug instead.
+
 ---
 
 ## Brand schema
