@@ -338,7 +338,7 @@ an Involve Asia advertiser and want to discuss inclusion,
 email <xwow.dev@gmail.com>.
 
 **Who operates this?**
-XWOW Pte. Ltd. (Singapore, UEN 202607127C). Contact: Jiaqi Ge,
+XWOW Pte. Ltd. (Singapore). Contact: Jiaqi Ge,
 <xwow.dev@gmail.com>. xurprise is an independent third-party
 discovery layer — we don't operate any of the merchant storefronts
 listed here.
