@@ -295,15 +295,25 @@ Every brand record has:
 
 ## Current catalogue
 
-As of the latest refresh, 11 brands:
+As of the latest refresh, 43 brands across region-matched surfaces:
 
-- **Marketplace** — Shopee SG, Taobao (Ai Taobao International), Taobao (brand-level entry)
-- **Fashion** — JD Sports SG, Shein Global
-- **Health & Beauty** — Sephora SG
-- **Electronics** — Xiaomi SG
-- **Travel** — Airpaz Global
-- **Digital Services** — WPS Office, The Trade Wizard
-- **Home & Living** — FusionHome AI
+- **Marketplace** — Shopee SG, Taobao (Ai Taobao International), Taobao (brand-level), Alibaba, Banggood, AliExpress
+- **Fashion** — JD Sports SG, Shein Global, Poplook, Rip Curl SG, Juice Store, Bernardelli
+- **Health & Beauty** — Sephora SG, Kinohimitsu SG, Papique
+- **Electronics** — Xiaomi SG, XP-PEN SG, Stryv SG
+- **Travel** — Airpaz, KKday, Zen Hotels, byFood, TrainPal, Kiwi.com, EasyBook, NINJA WiFi
+- **Digital Services / Software** — WPS, The Trade Wizard, Sider AI, Wegic, iMobie, MyRepublic SG
+- **Online Courses** — Udemy, International Open Academy
+- **Gaming / Entertainment** — UniPin, GameSeal, BINGE
+- **Gifting & Crafts** — Photobook SG, FlowerAdvisor SG
+- **Home & Living** — FusionHome AI, Homestyler
+- **Automotive** — Trapo SG
+- **Deals / Aggregation** — StackSocial
+
+Regional coverage: 12 Singapore-local, 2 Malaysia / SG multi-region, 7 SEA-regional, 22 global.
+A handful of brands are exposed as **brand-level entries only** (attribution redirects
+point at the brand homepage, not individual products) — `get_brand` surfaces the distinction
+via the `agent_note` field when relevant.
 
 For the live list, call `list_categories` + `search_brands` or visit
 [https://xurprise.ai/brands/](https://xurprise.ai/brands/).
